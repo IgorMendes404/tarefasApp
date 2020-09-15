@@ -6,4 +6,5 @@ export class Usuario {
     celular: string;
     email: string;
     senha: string;
+    materLogado: boolean;
 }
