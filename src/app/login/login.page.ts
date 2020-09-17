@@ -46,6 +46,8 @@ export class LoginPage implements OnInit {
     if (usuarioLogado && usuarioLogado.manterLogado) {
       this.router.navigateByUrl('/home');
       this.presentToast();
+    }else{
+      this.usuariosService.removerUsuarioLogado();
     }
   }
 
@@ -55,7 +57,7 @@ export class LoginPage implements OnInit {
       const usuario = await this.usuariosService.login(this.formLogin.value.email, this.formLogin.value.senha);
 
       if (usuario) {
-        usuario.materLogado = this.formLogin.value.manterLogado;
+        usuario.manterLogado = this.formLogin.value.manterLogado;
         this.usuariosService.salvarUsuarioLogado(usuario);
         this.router.navigateByUrl('/home');
         this.presentToast();
