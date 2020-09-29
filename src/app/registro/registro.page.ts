@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CpfValidator } from '../validators/cpf-validators';
 import { ComparacaoValidator } from '../validators/comparacao-validator';
 import { UsuariosService } from '../services/usuarios.service';

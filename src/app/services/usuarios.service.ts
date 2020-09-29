@@ -64,4 +64,25 @@ export class UsuariosService {
     return await this.armazenamentoService.removerDados('usuarioLogado');
   }
 
+  public async alterar(usuario:Usuario){ // Cria o metodo de alterar 
+    if(!usuario) {   
+      return false;  // Faz com que qualcquer coisa que n seja considerado usuario retorne falso
+    }
+
+    await this.buscarTodos(); // Faz um pesquisa para pegar os usuarios
+
+    const index = this.listaUsuarios.findIndex(usuarioArmazenado =>{
+      return usuarioArmazenado.email == usuario.email; // Cria uma constante, para o usuario com o mesmo email que está logado
+    });
+
+    const usuarioTemporario = this.listaUsuarios[index] as Usuario; // Cria uma constante para receber os dados da constante index
+
+    usuario.senha = usuarioTemporario.senha; // Adiciona a senha do usuario para a constante 
+
+    this.listaUsuarios[index] = usuario; // Tranforma os dados da constante em um usuario
+
+    return await this.armazenamentoService.salvarDados('usuarios', this.listaUsuarios); // Salva os dados alterados no usuario
+
+  }
+
 }
